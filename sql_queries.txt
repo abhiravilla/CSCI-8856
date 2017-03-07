@@ -1,0 +1,59 @@
+SQL Queries for creation of tables for Entities:
+
+
+CREATE TABLE `dbms`.`Specialist` ( `Name` VARCHAR(25) NOT NULL , `Id` INT(10) NOT NULL , `Password` VARCHAR(8) NOT NULL , `Reputation` INT(2) NOT NULL , `Specialization` VARCHAR(10) NOT NULL , `Category_id` INT(10) NOT NULL , PRIMARY KEY (`Id`));
+CREATE TABLE `dbms`.`operator` ( `Name` VARCHAR(25) NOT NULL , `Id` INT(10) NOT NULL , `Password` VARCHAR(8) NOT NULL ,`Status` INT(1) NOT NULL , PRIMARY KEY (`Id`));
+CREATE TABLE `dbms`.`Caller` ( `Name` VARCHAR(25) NOT NULL , `Caller_id` INT(15) NOT NULL , `Email` VARCHAR(25) NOT NULL, PRIMARY KEY (`Caller_id`));
+CREATE TABLE `dbms`.`Administrator` ( `Name` VARCHAR(25) NOT NULL , `Id` INT(10) NOT NULL , `Password` VARCHAR(8) NOT NULL , PRIMARY KEY (`Id`));
+CREATE TABLE `dbms`.`Problem_Category` ( `Specialist_id` INT(10) NOT NULL , `Id` INT(10) NOT NULL , `Password` VARCHAR(25) NOT NULL , PRIMARY KEY (`Id`));
+CREATE TABLE `dbms`.`Call_Log` ( `Call_id` INT(10) NOT NULL , `Caller_id` INT(10) NOT NULL , `Day` INT(2) NOT NULL , `Month` INT(2) NOT NULL , `Year` INT(4) NOT NULL , PRIMARY KEY (`Call_id`));
+CREATE TABLE `dbms`.`Resolved` ( `Id` INT(10) NOT NULL , `Specialist_id` INT(10) NOT NULL , `Description` VARCHAR(25) NOT NULL , `Problem_id` INT(10) NOT NULL , PRIMARY KEY (`Id`));
+CREATE TABLE `dbms`.`Problem` ( `Id` INT(10) NOT NULL , `Description` VARCHAR(25) NOT NULL , `Status` INT(1) NOT NULL , PRIMARY KEY (`Id`));
+
+SQL Queries for creation of tables for Relations:
+
+CREATE TABLE `dbms`.`Manages` ( `Admin_id` INT(10) NOT NULL , `Category_id` INT(10) NOT NULL , PRIMARY KEY (`Category_id`));
+CREATE TABLE `dbms`.`Talks` ( `Caller_id` INT(10) NOT NULL , `Operator_id` INT(10) NOT NULL , PRIMARY KEY (`Caller_id`)) ;
+CREATE TABLE `dbms`.`Logs` ( `Call_id` INT(10) NOT NULL , `Operator_id` INT(10) NOT NULL , PRIMARY KEY (`Call_id`));
+CREATE TABLE `dbms`.`Assigned` ( `Problem_id` INT(10) NOT NULL , `Specialist_id` INT(10) NOT NULL , PRIMARY KEY (`Problem_id`));
+CREATE TABLE `dbms`.`Category` ( `Category_id` INT(10) NOT NULL , `Problem_id` INT(10) NOT NULL , PRIMARY KEY (`Category_id`));
+CREATE TABLE `dbms`.`Contains` ( `Call_id` INT(10) NOT NULL , `Problem_id` INT(10) NOT NULL , PRIMARY KEY (`Category_id`));
+
+SQL Queries to Populate Data 
+
+INSERT INTO `operator` (`Name`, `Id`, `Password`, `Status`) VALUES ('Ryan Jackson', '267811377', 'Ryan', '0'), ('Chester Lutz', '132303888', 'Chester', '0');
+INSERT INTO `operator` (`Name`, `Id`, `Password`, `Status`) VALUES ('Lance Mathis', '315280435', 'Lance', '0'), ('Emerson Jongens', '872792211', 'Emerson', '0'), ('Lajuana Jensen', '823219316', 'Lajuana', '0'), ('Lenny Wu', '490751326', 'Lenny', '0'), ('Tijuana Barnes', '856419521', 'Tijuana ', '0');
+
+INSERT INTO `problem_category` (`Id`, `Description`) VALUES ('3', 'performance'), ('4', 'toch point'), ('5', 'Service'), ('6', 'Camera'), ('7', 'Microphone');
+
+INSERT INTO `specialist` (`Name`, `Id`, `Password`, `Reputation`, `Specialization`, `Category_id`) VALUES ('Justine Mygnolo', '269606783', 'Justine ', '7', 'performan', '3'), ('Fausto Agramonte', '570145752', 'Fausto ', '8', 'touchpoint', '4');
+INSERT INTO `specialist` (`Name`, `Id`, `Password`, `Reputation`, `Specialization`, `Category_id`) VALUES ('Stephaine Vinning ', '235878310', 'Stephai', '6', 'Service', '5'), ('layla Springe', '703592215', 'Layla', '8', 'Camera', '6');
+INSERT INTO `specialist` (`Name`, `Id`, `Password`, `Reputation`, `Specialization`, `Category_id`) VALUES ('Ozell Shealy', '877022935', 'Ozell', '9', 'Microphone', '7');
+
+INSERT INTO `caller` (`Name`, `Caller_id`, `Email`, `Operator_id`) VALUES ('Jose Stockham', '395799032', 'js@gmail.com', '237490166'), ('Jina Briddick', '190710105', 'jb@gmail.com', '490751326'), ('Brock Bolognia', '333140780', 'bb@gmail.com', '823219316'), ('Tawna Buvens', '917013248', 'tb@gmail.com', '872792211'), ('kallie Blackwood', '583703328', 'kb@gmail.com', '739583429');
+INSERT INTO `caller` (`Name`, `Caller_id`, `Email`, `Operator_id`) VALUES ('Akiko', '585046895', 'akiko@gmail.com', '315280435'), ('Andy Thompson', '716444105', 'at@gmail.com', '739583429'), ('Elton Cole ', '877291400', 'ec@gmail.com', '237490166');
+
+INSERT INTO `administrator` (`Name`, `Id`, `Password`) VALUES ('Barney Bond', '980905039', 'barney'), ('Danita Boonzayuer', '935348399', 'Danita'), ('Jeanie Franklin', '790181753', 'Jeanie'), ('Hermine Lyons ', '947833181', 'Hermine '), ('Buford Berg ', '638979850', 'Buford');
+
+INSERT INTO `manages` (`Admin_id`, `Category_id`) VALUES ('980905039', '3'), ('947833181', '4'), ('935348399', '5'), ('790181753', '6'), ('638979850', '7');
+
+INSERT INTO `problem` (`Id`, `Description`, `Status`, `Category_id`) VALUES ('3', 'Performance', '0', '3'), ('4', 'touchpoint ', '1', '4'), ('5', 'OS Error ', '0', '1'), ('6', 'Service', '1', '5'), ('7', 'Camera', '0', '6');
+INSERT INTO `problem` (`Id`, `Description`, `Status`, `Category_id`) VALUES ('8', 'Microphone', '1', '7'), ('9', 'Performance ', '1', '3'), ('10', 'camera', '0', '6');
+
+INSERT INTO `call_log` (`Call_id`, `Caller_id`, `Day`, `Month`, `Year`) VALUES ('3', '190710105', '14', '1', '2017'), ('4', '333140780', '5', '2', '2017'), ('5', '395799032', '25', '2', '2017'), ('6', '583703328', '13', '1', '2017'), ('7', '585046895', '1', '3', '2017'), ('8', '716444105', '22', '1', '2017'), ('9', '877291400', '20', '2', '2017'), ('10', '917013248', '15', '2', '2017')
+
+INSERT INTO `assigned` (`Specialist_id`, `Problem_id`) VALUES ('269606783', '3'), ('570145752', '4'), ('227657699', '5'), ('235878310', '6'), ('703592215', '7'), ('877022935', '8'), ('269606783', '9'), ('703592215', '10');
+
+INSERT INTO `logs` (`Call_id`, `Operator_id`) VALUES ('3', '490751326'), ('4', '823219316'), ('5', '237490166'), ('6', '739583429'), ('7', '315280435'), ('8', '739583429'), ('9', '237490166'), ('10', '872792211');
+
+INSERT INTO `contains` (`Call_id`, `Problem_id`) VALUES ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10');
+
+INSERT INTO `resolved` (`Id`, `Specialist_id`, `Description`, `Problem_id`) VALUES ('3', '570145752', 'Touchpoint', '4'), ('5', '235878310', 'Service', '6'), ('4', '877022935', 'Microphone', '8'), ('2', '269606783', 'Performance', '9');
+
+
+
+
+
+
+
+
