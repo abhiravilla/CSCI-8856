@@ -1,0 +1,741 @@
+ABHIMANYU RAVILLA NUID 82402494
+
+
+Queries For Creating Tables And Populating Data :
+
+
+CREATE TABLE `administrator` (
+  `Name` varchar(25) NOT NULL,
+  `Id` int(10) NOT NULL,
+  `Password` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `assigned` (
+  `Specialist_id` int(10) NOT NULL,
+  `Problem_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `caller` (
+  `Name` varchar(25) NOT NULL,
+  `Caller_id` int(15) NOT NULL,
+  `Email` varchar(25) NOT NULL,
+  `Operator_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `call_log` (
+  `Call_id` int(10) NOT NULL,
+  `Caller_id` int(10) NOT NULL,
+  `Day` int(2) NOT NULL,
+  `Month` int(2) NOT NULL,
+  `Year` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+CREATE TABLE `contains` (
+  `Call_id` int(10) NOT NULL,
+  `Problem_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `logs` (
+  `Call_id` int(10) NOT NULL,
+  `Operator_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+CREATE TABLE `manages` (
+  `Admin_id` int(10) NOT NULL,
+  `Category_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+CREATE TABLE `operator` (
+  `Name` varchar(25) NOT NULL,
+  `Id` int(10) NOT NULL,
+  `Password` varchar(8) NOT NULL,
+  `Status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+CREATE TABLE `phone_adm` (
+  `Id` int(10) NOT NULL,
+  `phone` int(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
+INSERT INTO `phone_adm` (`Id`, `phone`) VALUES
+(432081046, 556470586),
+(432081046, 669826074),
+(638979850, 328419023),
+(638979850, 943427020),
+(790181753, 561938896),
+(790181753, 904121298),
+(935348399, 180060383),
+(935348399, 618570824),
+(947833181, 384969819),
+(947833181, 975822338),
+(980905039, 136883438),
+(980905039, 340579896),
+(997773734, 503064174),
+(997773734, 764274026);
+
+
+
+
+CREATE TABLE `phone_cus` (
+  `Id` int(10) NOT NULL,
+  `Phone` int(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
+
+INSERT INTO `phone_cus` (`Id`, `Phone`) VALUES
+(127961616, 242859628),
+(127961616, 959338385),
+(190710105, 231105509),
+(190710105, 316194135),
+(333140780, 314843258),
+(333140780, 756709773),
+(395799032, 479361058),
+(395799032, 578642757),
+(583703328, 714574909),
+(583703328, 901130748),
+(585046895, 356282483),
+(585046895, 974026011),
+(716444105, 249589356),
+(716444105, 695133532),
+(877291400, 573521318),
+(877291400, 792587296),
+(917013248, 500386098),
+(917013248, 794666928),
+(949700884, 610364195),
+(949700884, 674119619);
+
+
+
+
+CREATE TABLE `phone_op` (
+  `Id` int(10) NOT NULL,
+  `phone` int(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
+INSERT INTO `phone_op` (`Id`, `phone`) VALUES
+(132303888, 102366175),
+(132303888, 712597310),
+(197616018, 438034685),
+(197616018, 916777768),
+(237490166, 349981796),
+(237490166, 637679710),
+(267811377, 346329584),
+(267811377, 987861966),
+(315280435, 768103633),
+(315280435, 849951581),
+(490751326, 416830277),
+(490751326, 935146498),
+(739583429, 166374246),
+(739583429, 368489198),
+(823219316, 489766917),
+(823219316, 755621308),
+(856419521, 455763230),
+(856419521, 735310990),
+(872792211, 131786751),
+(872792211, 476199375);
+
+
+
+
+CREATE TABLE `phone_spc` (
+  `Id` int(10) NOT NULL,
+  `phone` int(10) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
+INSERT INTO `phone_spc` (`Id`, `phone`) VALUES
+(164666188, 456617477),
+(164666188, 828598115),
+(227657699, 361662163),
+(227657699, 534785618),
+(235878310, 417637912),
+(235878310, 663067918),
+(269606783, 213226852),
+(269606783, 256063651),
+(570145752, 242802765),
+(570145752, 305819966),
+(703592215, 563487254),
+(703592215, 778332710),
+(877022935, 864925614),
+(877022935, 963214121);
+
+
+
+
+CREATE TABLE `problem` (
+  `Id` int(10) NOT NULL,
+  `Description` varchar(25) NOT NULL,
+  `Status` int(1) NOT NULL,
+  `Category_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+CREATE TABLE `problem_category` (
+  `Id` int(10) NOT NULL,
+  `Description` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+
+
+CREATE TABLE `resolved` (
+  `Id` int(10) NOT NULL,
+  `Specialist_id` int(10) NOT NULL,
+  `Description` varchar(25) NOT NULL,
+  `Problem_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+CREATE TABLE `specialist` (
+  `Name` varchar(25) NOT NULL,
+  `Id` int(10) NOT NULL,
+  `Password` varchar(8) NOT NULL,
+  `Reputation` int(2) NOT NULL,
+  `Specialization` varchar(10) NOT NULL,
+  `Category_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `administrator` (`Name`, `Id`, `Password`) VALUES
+('Kristofer Braodbent', 432081046, 'kristof'),
+('Buford Berg ', 638979850, 'Buford'),
+('Jeanie Franklin', 790181753, 'Jeanie'),
+('Danita Boonzayuer', 935348399, 'Danita'),
+('Hermine Lyons ', 947833181, 'Hermine '),
+('Barney Bond', 980905039, 'barney'),
+('Jennell Crane ', 997773734, 'Jennell');
+INSERT INTO `caller` (`Name`, `Caller_id`, `Email`, `Operator_id`) VALUES
+('William Kusko', 127961616, 'wk@gmail.com', 197616018),
+('Jina Briddick', 190710105, 'jb@gmail.com', 490751326),
+('Brock Bolognia', 333140780, 'bb@gmail.com', 823219316),
+('Jose Stockham', 395799032, 'js@gmail.com', 237490166),
+('kallie Blackwood', 583703328, 'kb@gmail.com', 739583429),
+('Akiko', 585046895, 'akiko@gmail.com', 315280435),
+('Andy Thompson', 716444105, 'at@gmail.com', 739583429),
+('Elton Cole ', 877291400, 'ec@gmail.com', 237490166),
+('Tawna Buvens', 917013248, 'tb@gmail.com', 872792211),
+('Alisha Sergi', 949700884, 'al@gmail.com', 237490166);
+INSERT INTO `call_log` (`Call_id`, `Caller_id`, `Day`, `Month`, `Year`) VALUES
+(1, 127961616, 2, 3, 2017),
+(2, 949700884, 7, 1, 2017),
+(3, 190710105, 14, 1, 2017),
+(4, 333140780, 5, 2, 2017),
+(5, 395799032, 25, 2, 2017),
+(6, 583703328, 13, 1, 2017),
+(7, 585046895, 1, 3, 2017),
+(8, 716444105, 22, 1, 2017),
+(9, 877291400, 20, 2, 2017),
+(10, 917013248, 15, 2, 2017);
+
+INSERT INTO `contains` (`Call_id`, `Problem_id`) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 9),
+(10, 10);
+INSERT INTO `logs` (`Call_id`, `Operator_id`) VALUES
+(1, 197616018),
+(2, 237490166),
+(5, 237490166),
+(9, 237490166),
+(7, 315280435),
+(3, 490751326),
+(6, 739583429),
+(8, 739583429),
+(4, 823219316),
+(10, 872792211);
+INSERT INTO `manages` (`Admin_id`, `Category_id`) VALUES
+(997773734, 1),
+(432081046, 2),
+(980905039, 3),
+(947833181, 4),
+(935348399, 5),
+(790181753, 6),
+(638979850, 7);
+
+INSERT INTO `operator` (`Name`, `Id`, `Password`, `Status`) VALUES
+('Chester Lutz', 132303888, 'Chester', 0),
+('Frankie Van ', 197616018, 'Frankie', 1),
+('Lanell Colpa', 237490166, 'Lanell', 1),
+('Ryan Jackson', 267811377, 'Ryan', 0),
+('Lance Mathis', 315280435, 'Lance', 1),
+('Lenny Wu', 490751326, 'Lenny', 1),
+('Dorsey Stewart', 739583429, 'Dorsey', 1),
+('Lajuana Jensen', 823219316, 'Lajuana', 1),
+('Tijuana Barnes', 856419521, 'Tijuana ', 0),
+('Emerson Jongens', 872792211, 'Emerson', 1);
+INSERT INTO `problem_category` (`Id`, `Description`) VALUES
+(1, 'OS Error'),
+(2, 'App Error'),
+(3, 'performance'),
+(4, 'toch point'),
+(5, 'Service'),
+(6, 'Camera'),
+(7, 'Microphone');
+
+INSERT INTO `resolved` (`Id`, `Specialist_id`, `Description`, `Problem_id`) VALUES
+(1, 164666188, 'Updated App/Code', 2),
+(2, 269606783, 'Performance', 9),
+(3, 570145752, 'Touchpoint', 4),
+(4, 877022935, 'OS Update', 8),
+(5, 235878310, 'Service', 6);
+
+
+INSERT INTO `specialist` (`Name`, `Id`, `Password`, `Reputation`, `Specialization`, `Category_id`) VALUES
+('Mirta Mallet', 164666188, 'Mirta', 9, 'App', 2),
+('Haydee Denooyer', 227657699, 'Haydee', 7, 'OS', 1),
+('Stephaine Vinning ', 235878310, 'Stephai', 6, 'Service', 5),
+('Justine Mygnolo', 269606783, 'Justine ', 7, 'performan', 3),
+('Fausto Agramonte', 570145752, 'Fausto ', 8, 'touchpoint', 4),
+('layla Springe', 703592215, 'Layla', 8, 'Camera', 6),
+('Ozell Shealy', 877022935, 'Ozell', 9, 'Microphone', 7);
+
+INSERT INTO `assigned` (`Specialist_id`, `Problem_id`) VALUES
+(164666188, 2),
+(235878310, 6),
+(269606783, 3),
+(269606783, 9),
+(570145752, 4),
+(703592215, 7),
+(703592215, 10),
+(877022935, 8), ('227657699', '5');
+INSERT INTO `problem` (`Id`, `Description`, `Status`, `Category_id`) VALUES
+(1, 'OS Error', 0, 1),
+(2, 'App Error', 1, 2),
+(3, 'Performance', 0, 3),
+(4, 'touchpoint ', 1, 4),
+(5, 'OS Error ', 0, 1),
+(6, 'Service', 1, 5),
+(7, 'Camera', 0, 6),
+(8, 'OS Error', 1, 1),
+(9, 'Performance ', 1, 3),
+(10, 'camera', 0, 6);
+
+
+
+ALTER TABLE `administrator`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Id` (`Id`),
+  ADD KEY `Id_2` (`Id`);
+
+
+
+ALTER TABLE `assigned`
+  ADD PRIMARY KEY (`Specialist_id`,`Problem_id`),
+  ADD KEY `Specialist_id` (`Specialist_id`),
+  ADD KEY `Problem_id` (`Problem_id`);
+
+
+
+ALTER TABLE `caller`
+  ADD PRIMARY KEY (`Caller_id`),
+  ADD KEY `Caller_id` (`Caller_id`),
+  ADD KEY `Operator_id` (`Operator_id`);
+
+
+
+ALTER TABLE `call_log`
+  ADD PRIMARY KEY (`Call_id`),
+  ADD KEY `Caller_id` (`Caller_id`);
+
+
+
+ALTER TABLE `contains`
+  ADD PRIMARY KEY (`Call_id`,`Problem_id`),
+  ADD KEY `Problem_id` (`Problem_id`);
+
+
+
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`Call_id`),
+  ADD KEY `Operator_id` (`Operator_id`);
+
+
+
+ALTER TABLE `manages`
+  ADD PRIMARY KEY (`Admin_id`,`Category_id`),
+  ADD KEY `Category_id` (`Category_id`);
+
+
+
+ALTER TABLE `operator`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Id` (`Id`);
+
+
+
+ALTER TABLE `phone_adm`
+  ADD PRIMARY KEY (`Id`,`phone`);
+
+
+
+ALTER TABLE `phone_cus`
+  ADD PRIMARY KEY (`Id`,`Phone`);
+
+
+
+ALTER TABLE `phone_op`
+  ADD PRIMARY KEY (`Id`,`phone`);
+
+
+
+ALTER TABLE `phone_spc`
+  ADD PRIMARY KEY (`Id`,`phone`);
+
+
+
+ALTER TABLE `problem`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Category_id` (`Category_id`);
+
+
+
+ALTER TABLE `problem_category`
+  ADD PRIMARY KEY (`Id`);
+
+
+
+ALTER TABLE `resolved`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Specialist_id` (`Specialist_id`),
+  ADD KEY `Problem_id` (`Problem_id`);
+
+
+
+ALTER TABLE `specialist`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `Category_id` (`Category_id`);
+
+
+
+
+
+ALTER TABLE `assigned`
+  ADD CONSTRAINT `assigned_ibfk_1` FOREIGN KEY (`Specialist_id`) REFERENCES `specialist` (`Id`),
+  ADD CONSTRAINT `assigned_ibfk_2` FOREIGN KEY (`Problem_id`) REFERENCES `problem` (`Id`);
+
+
+
+ALTER TABLE `caller`
+  ADD CONSTRAINT `caller_ibfk_1` FOREIGN KEY (`Operator_id`) REFERENCES `operator` (`Id`);
+
+
+
+ALTER TABLE `call_log`
+  ADD CONSTRAINT `call_log_ibfk_1` FOREIGN KEY (`Caller_id`) REFERENCES `caller` (`Caller_id`);
+
+
+
+ALTER TABLE `contains`
+  ADD CONSTRAINT `contains_ibfk_1` FOREIGN KEY (`Call_id`) REFERENCES `call_log` (`Call_id`),
+  ADD CONSTRAINT `contains_ibfk_2` FOREIGN KEY (`Problem_id`) REFERENCES `problem` (`Id`);
+
+
+
+ALTER TABLE `logs`
+  ADD CONSTRAINT `logs_ibfk_1` FOREIGN KEY (`Call_id`) REFERENCES `call_log` (`Call_id`),
+  ADD CONSTRAINT `logs_ibfk_2` FOREIGN KEY (`Operator_id`) REFERENCES `operator` (`Id`);
+
+
+ALTER TABLE `manages`
+  ADD CONSTRAINT `manages_ibfk_1` FOREIGN KEY (`Category_id`) REFERENCES `problem_category` (`Id`),
+  ADD CONSTRAINT `manages_ibfk_2` FOREIGN KEY (`Admin_id`) REFERENCES `administrator` (`Id`);
+
+
+
+ALTER TABLE `problem`
+  ADD CONSTRAINT `problem_ibfk_1` FOREIGN KEY (`Category_id`) REFERENCES `problem_category` (`Id`);
+
+
+
+ALTER TABLE `resolved`
+  ADD CONSTRAINT `resolved_ibfk_1` FOREIGN KEY (`Specialist_id`) REFERENCES `specialist` (`Id`),
+  ADD CONSTRAINT `resolved_ibfk_2` FOREIGN KEY (`Problem_id`) REFERENCES `problem` (`Id`);
+
+
+
+ALTER TABLE `specialist`
+  ADD CONSTRAINT `specialist_ibfk_1` FOREIGN KEY (`Category_id`) REFERENCES `problem_category` (`Id`);
+
+
+
+
+
+24 Queries:
+
+1.	Query 1
+Create a view to show the number of complaints filed in each category in Descending order
+i)	CREATE VIEW cg as SELECT category_id,COUNT(*) as cnt FROM problem GROUP BY category_id ORDER BY cnt DESC;
+View created
+
+2.	Query 2
+Find the Name ,category id and Id of all specialist whose name start with Just
+i)	SELECT Name,Category_id,Id FROM specialist WHERE Name like "Just%"Query 3
+ 
+Name Category_id Id
+Justine Mygnolo 3 269606783
+
+3.	Query 3
+
+i)	SELECT category_id,problem_category.Description,COUNT(*) as cnt FROM problem,problem_category WHERE problem.Category_id=problem_category.Id GROUP BY category_id 
+
+category_id Description cnt
+1 	OS Error 	3
+2	App Error 	1
+3	performance 	2
+4	toch point	1
+5	Service		1
+6	Camera		2
+
+4.	Query 4
+Find Name and Id of the operator who answered most calls
+i)	CREATE VIEW q4 AS SELECT Operator_id,COUNT(*) AS cnt FROM caller GROUP BY Operator_id ORDER BY cnt DESC LIMIT 1
+ii)	SELECT Name,Id,q4.cnt FROM operator,q4 WHERE Id in (SELECT Operator_id FROM q4)
+
+Name	Id	cnt
+Lanell Colpa 237490166 3
+
+5.	Query 5
+Find specialist Id's who have more than 1 complaints assigned to them
+i)	SELECT Specialist_id,COUNT(*) as cnt FROM `assigned`GROUP BY Specialist_id  HAVING cnt>1
+
+Specialist_id cnt
+269606783 	2
+703592215 	2
+
+6.	Query 6
+Find description of problems filed by all callers.
+i)	SELECT nr.Caller_id,Description FROM (SELECT * FROM (caller NATURAL JOIN call_log) NATURAL JOIN CONTAINS)nr NATURAL JOIN problem WHERE nr.Problem_id=problem.Id
+
+Caller_id	Description
+127961616	OS Error
+190710105	Performance
+333140780	touchpoint
+395799032	OS Error
+583703328	Service
+585046895	Camera
+716444105	OS Error
+877291400	Performance
+917013248	camera
+949700884	App Error
+
+7.	Query 7
+
+Find the top 3 categories which have most problems/complaints filed. 
+i)	SELECT cg.category_id,cg.cnt, problem_category.Description FROM `problem_category`,cg WHERE cg.category_id=problem_category.Id ORDER BY cnt DESC limit 3;
+category_id cnt  Description
+
+1	3	OS Error	
+3	2	performance	
+6	2	Camera	
+
+
+8.	Query 8
+Show the names and ids of all specialist whose rating is greater than 8
+i)	SELECT Name, Id FROM specialist WHERE Reputation>8
+
+Name 		Id	
+Mirta Mallet	164666188
+Ozell Shealy	877022935
+
+9.	Query 9
+Find if the names of callers who talked to same operator and are assigned to either one of specialist ids 227657699, 269606783.
+i)	CREATE VIEW q9 AS SELECT * FROM (SELECT * FROM (SELECT * FROM (caller NATURAL JOIN call_log) NATURAL JOIN CONTAINS)nr NATURAL JOIN assigned )j WHERE (j.Specialist_id=227657699 OR j.Specialist_id=269606783);
+ii)	SELECT a.Name,b.Name FROM q9 a,q9 b WHERE (b.Specialist_id=227657699 AND a.Specialist_id=269606783) AND (a.Operator_id=b.Operator_id);
+
+Name		Name
+Elton Cole	Jose Stockham
+
+10.	Query 10 Delete
+Delete the row in Assigned table where Specialist_id is 227657699
+i)	DELETE FROM assigned WHERE Specialist_id=227657699
+1 row affected
+
+11.	Query 11 
+Update the problem table to reflect all the complaints of specialist id 227657699 as resolved
+i)	UPDATE problem SET Status=1 WHERE Category_id=1
+2 rows affected.
+
+12.	Query 12 
+The caller with ID 127961616 has updated his phone number from 242859628 to 242859629. Update it in the Database 
+	UPDATE phone_cus SET phone=242859629 WHERE phone=242859628 and Id=127961616
+1 row affected
+
+13.	Query 13 
+The caller with ID 127961616 has canceled his phone number 242859629. Delete it in the Database 
+	DELETE FROM phone_cus WHERE phone=242859629 and Id=127961616
+1 row affected
+
+14.	Query 14
+The admin assigned the operators phone number 102366175 to Id 132303888 instead of 197616018
+	UPDATE phone_op SET Id=197616018 WHERE phone=102366175 and Id=132303888
+1 row affected
+
+15.	Query 15 
+The admin wants to delete the operators phone number 102366175 of the Id 197616018. Update the database
+	DELETE FROM phone_op WHERE phone=916777768 and Id=197616018	
+1 row affected
+
+16.	Query 16 
+Find all caller names whose problems are not managed by Admin with Id 638979850
+i)	CREATE VIEW q16 AS SELECT * FROM (SELECT Name,Category_id FROM (SELECT * FROM (caller NATURAL JOIN call_log) NATURAL JOIN CONTAINS)nr NATURAL JOIN problem WHERE nr.Problem_id=problem.Id)np NATURAL JOIN manages
+ii)	SELECT * FROM `q16` WHERE Admin_id!=638979850
+Category_id Name	Admin_id
+1	William Kusko	997773734
+1	Jose Stockham	997773734
+1	Andy Thompson	997773734
+2	Alisha Sergi	432081046
+3	Jina Briddick	980905039
+3	Elton Cole	980905039
+4	Brock Bolognia	947833181
+5	kallie Blackwood935348399
+6	Akiko 		790181753
+6	Tawna Buvens	790181753
+
+17.	Query 17
+Find all caller_id’s who called in the 2 month
+i)	SELECT * FROM `call_log` WHERE Month=2
+Call_id	Caller_id	Day	Month	Year
+4	333140780	5	2	2017
+5	395799032	25	2	2017
+9	877291400	20	2	2017
+10	917013248	15	2	2017
+
+18.	Query 18
+Find the data, month and year for the caller whose caller_id is 190710105
+i)	SELECT Day, Month,Year FROM call_log WHERE Caller_id IN (SELECT Caller_id FROM call_log WHERE Caller_id=127961616)
+Day	Month	Year
+2	3	2017
+19.	Query 19
+Find the operator names who are not active
+i)	SELECT * FROM `operator` WHERE status=0
+	
+Name		Id		Password	Status
+Chester Lutz	132303888	Chester		0
+Ryan Jackson	267811377	Ryan		0
+Tijuana Barnes	856419521	Tijuana		0
+20.	Query 20
+Find the names of callers whose problems are resolved
+i)	SELECT Name FROM ((resolved NATURAL JOIN contains) NATURAL JOIN call_log) NATURAL LEFT OUTER JOIN caller
+Name
+Alisha Sergi
+Brock Bolognia
+kallie Blackwood
+Andy Thompson
+Elton Cole
+21.	Query 21
+Find the specialist Id's, what they have done and their names who have solved one or more problems assigned to them
+i)	SELECT Name,Description,Id FROM specialist NATURAL JOIN (SELECT Specialist_id as Id,Description FROM resolved)rw
+Name			Description		Id	
+Mirta Mallet		Updated App/Code	164666188
+Justine Mygnolo		Performance		269606783
+Fausto Agramonte	Touchpoint		570145752
+Ozell Shealy		OS Update		877022935
+Stephaine Vinning	Service			235878310
+
+22.	Query 22
+Find names of specialists whose reputation is less than 8 and have more problems assigned to them than atleast one specialist whose repution is greater than 7 	
+
+Comment: This is supposed to be set comparision query.....It seems WAMP doesnt support > some
+
+i)CREATE VIEW q22 SELECT Name,cnt FROM (SELECT Name,Id FROM specialist WHERE Reputation>7)sq2 NATURAL JOIN (SELECT Specialist_id as Id, COUNT(*) as cnt FROM assigned GROUP BY assigned.Specialist_id)sq1
+ii)CREATE VIEW q221 SELECT Name,cnt FROM (SELECT Name,Id FROM specialist WHERE Reputation<8)sq2 NATURAL JOIN (SELECT Specialist_id as Id, COUNT(*) as cnt FROM assigned GROUP BY assigned.Specialist_id)sq1
+iii)SELECT q221.Name FROM (SELECT MIN(cnt) AS min FROM q22)q1,q221 WHERE q221.cnt>min
+
+Name
+Justine Mygnolo
+
+23.	Query 23
+Find Number of complaints filed under each Administrator Category
+i)SELECT * FROM (SELECT Category_id,SUM(cnt) FROM (SELECT Specialist_id as Id,COUNT(*) as cnt FROM assigned GROUP BY(Specialist_id))q1 NATURAL JOIN specialist GROUP BY Category_id)q2 NATURAL JOIN (SELECT Name,Category_id FROM administrator JOIN manages where administrator.Id=manages.Admin_id)q3;
+
+Category_id	SUM(cnt)	Name
+2		1		Kristofer Braodbent
+7		1		Buford Berg
+6		2		Jeanie Franklin
+5		1		Danita Boonzayuer
+4		1		Hermine Lyons
+3		2		Barney Bond
+1		1		Jennell Crane
+
+24.	Query 24
+Find the reputations of specialist assigned to each caller
+SELECT * FROM (SELECT Name,Call_id FROM caller NATURAL JOIN call_log )q1 NATURAL JOIN ( SELECT Call_id,Reputation FROM contains NATURAL JOIN (SELECT problem.Id as Problem_id,specialist.Reputation FROM problem,specialist WHERE problem.Category_id=specialist.Category_id)q3)q2
+Call_id		Name			Reputation
+1		William Kusko		7
+3		Jina Briddick		7
+4		Brock Bolognia		8
+5		Jose Stockham		7
+6		kallie Blackwood	6
+7		Akiko			8
+8		Andy Thompson		7
+9		Elton Cole		7
+10		Tawna Buvens		8
+2		Alisha Sergi		9
+
+Original SQL SPECIFICATION
+
+CREATE TABLE `Specialist` ( `Name` VARCHAR(25) NOT NULL , `Id` INT(10) NOT NULL , `Password` VARCHAR(8) NOT NULL , `Reputation` INT(2) NOT NULL , `Specialization` VARCHAR(10) NOT NULL , `Category_id` INT(10) NOT NULL , PRIMARY KEY (`Id`), FOREIGN KEY (`Category_id`) REFERENCES `problem_category`(`Id`));
+CREATE TABLE `operator` ( `Name` VARCHAR(25) NOT NULL , `Id` INT(10) NOT NULL , `Password` VARCHAR(8) NOT NULL ,`Status` INT(1) NOT NULL , `Caller_id` INT(15) NOT NULL , PRIMARY KEY (`Id`));
+CREATE TABLE `Caller` ( `Name` VARCHAR(25) NOT NULL , `Caller_id` INT(15) NOT NULL , `Email` VARCHAR(25) NOT NULL, `Operator_id` INT(10) NOT NULL , PRIMARY KEY (`Caller_id`),FOREIGN KEY (`Operator_id`) REFERENCES `operator`(`Id`));
+CREATE TABLE `Administrator` ( `Name` VARCHAR(25) NOT NULL , `Id` INT(10) NOT NULL , `Password` VARCHAR(8) NOT NULL , PRIMARY KEY (`Id`));
+
+
+CREATE TABLE `problem_category` (
+  `Id` int(10) NOT NULL,
+  `Description` varchar(25) NOT NULL
+);
+
+
+
+
+
+CREATE TABLE `Call_Log` ( `Call_id` INT(10) NOT NULL , `Caller_id` INT(10) NOT NULL , `Day` INT(2) NOT NULL , `Month` INT(2) NOT NULL , `Year` INT(4) NOT NULL , PRIMARY KEY (`Call_id`), PRIMARY KEY (`Caller_id`),FOREIGN KEY (`Caller_id`) REFERENCES `caller`(`Caller_Id`));
+CREATE TABLE `Resolved` ( `Id` INT(10) NOT NULL , `Specialist_id` INT(10) NOT NULL , `Description` VARCHAR(25) NOT NULL , `Problem_id` INT(10) NOT NULL , PRIMARY KEY (`Id`), FOREIGN KEY (`Specialist_id`) REFERENCES `specialist`(`Id`), FOREIGN KEY (`Problem_id`) REFERENCES `problem`(` Id`) );
+CREATE TABLE `Problem` ( `Id` INT(10) NOT NULL , `Description` VARCHAR(25) NOT NULL , `Status` INT(1) NOT NULL , `Category_id` INT NOT NULL , PRIMARY KEY (`Id`) , FOREIGN KEY (`Category_id`) REFERENCES `problem_category`(`Id`));
+CREATE TABLE `phone_cus` ( `Id` INT(10) NOT NULL , `Phone` INT(10) NOT NULL , PRIMARY KEY (`Id`, `Phone`),FOREIGN KEY (`Id`) REFERENCES `caller`(`Caller_id`) );
+CREATE TABLE `phone_emp` ( `Id` INT(10) NOT NULL , `phone` INT(10) NOT NULL , PRIMARY KEY (`Id`, `phone`),FOREIGN KEY (`Id`) REFERENCES `administrator`(`Id`),FOREIGN KEY (`Id`) REFERENCES `specialist`(`Id`),FOREIGN KEY (`Id`) REFERENCES `operator`(`Id`));
+CREATE TABLE `manages` ( `Admin_id` INT(10) NOT NULL , `Category_id` INT(10) NOT NULL , PRIMARY KEY (`Admin_id`, `Category_id`), FOREIGN KEY (`Category_id`) REFERENCES `problem_category`(`Id`), FOREIGN KEY (`Admin_id`) REFERENCES `administrator`(`Id`));
+CREATE TABLE `Logs` ( `Call_id` INT(10) NOT NULL , `Operator_id` INT(10) NOT NULL , PRIMARY KEY (`Call_id`), FOREIGN KEY (`Call_id`) REFERENCES `call_log`(`Call_id`), FOREIGN KEY (`Operator_id`) REFERENCES `operator`(`Id`));
+CREATE TABLE `Assigned` ( `Specialist_id` INT(10) NOT NULL , `Problem_id` INT(10) NOT NULL , PRIMARY KEY (`Specialist_id`, `Problem_id`) , FOREIGN KEY (`Problem_id`) REFERENCES `problem`(`Id`), FOREIGN KEY (`Specialist_id`) REFERENCES `Specialist`(`Id`));
+CREATE TABLE `Contains` ( `Call_id` INT(10) NOT NULL , `Problem_id` INT(10) NOT NULL , PRIMARY KEY (`Call_id`, `Problem_id`), FOREIGN KEY (`Call_id`) REFERENCES `call_log`(`Call_id`), FOREIGN KEY (`Problem_id`) REFERENCES `problem`(`Id`));
+
+There 2 changes made to the original specification
+
+1) The column Caller_id in the operator table was removed. This is because the rows in the operator cannot be associated with the callers to whom they talk. 
+We can find out this information by joining operator with caller table. 
+
+2) The phone_emp table was deleted and three different tables were created each for administrator, operator and specialist. When the WAMP server accepted foreign key 
+constraint of Id attribute on ID attributes of three different tables I thought it is like logical OR between those three talbes attributes during constraint check.
+But it is not.
