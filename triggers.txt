@@ -1,0 +1,6 @@
+// Don't use these triggers on the database created for phase 2.......the foreign key constraint will take precedent and trigger will not be activated
+
+CREATE TRIGGER `check1` BEFORE INSERT ON `operator` FOR EACH ROW begin if new.Status >1 OR new.Status < 0 then set new.Id = NULL; end if; end;
+
+CREATE TRIGGER `checkid` BEFORE INSERT ON `resolved` FOR EACH ROW BEGIN DECLARE sid int(1);SELECT COUNT(1) INTO sid FROM specialist
+WHERE Id = NEW.Specialist_id; if sid = 0 then 	SET new.Specialist_id = NULL; end if; END
