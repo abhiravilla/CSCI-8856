@@ -30,7 +30,7 @@ while($x < $size) {
     $x++;
 }	
 	$sql = "SELECT * FROM ".$join."";
-	$result = $conn->query($sql);
+		$result = $conn->query($sql);
 if (!$result) {
     trigger_error('Invalid query: ' . $conn->error);
 }else{

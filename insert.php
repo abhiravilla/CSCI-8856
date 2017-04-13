@@ -6,16 +6,12 @@ $dbname = "dbms";
 $student_id="";
 $tname="";
 $tatt="";
-$twhere="";
-$tatta="";
 if($_SERVER["REQUEST_METHOD"]== "POST") {
 $tname=$_POST['name'];
-$twhere=$_POST['where'];
-if($twhere==NULL or $tname==NULL){
-	exit("Where clause or table name is empty");
+$tatt=$_POST['aname'];
+if($tatt==NULL or $tname==NULL  ){
+	exit("Atrribute or table name field is empty");
 }
-else
-	$tatta=$tatt;
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -23,15 +19,26 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 }	
-$sql = "DELETE FROM ".$tname." WHERE ".$twhere."";
-$result = $conn->query($sql);
+if($tname == "administrator"){
+	$sql = "INSERT INTO `administrator` (`Name`, `Id`, `Password`) VALUES (".$tatt.")";
+	$result = $conn->query($sql);
+	$sql = "SELECT * FROM ".$tname."";
+	$result = $conn->query($sql);
+}
+else if ($tname == "operator"){
+	$sql = "INSERT INTO `operator` (`Name`, `Id`, `Password`, `Status`) VALUES (".$tatt.")";
+	$result = $conn->query($sql);
+	$sql = "SELECT * FROM ".$tname."";
+	$result = $conn->query($sql);
+}
+else{
+	exit("Other tables generate may generate foreign key constraint errors.");
+}
 if (!$result) {
     trigger_error('Invalid query: ' . $conn->error);
 }else{
    echo("<table>");
 $first_row = true;
-$sql = "SELECT * FROM ".$tname."";
-$result = $conn->query($sql);
 while ($row = $result->fetch_assoc()) {
     if ($first_row) {
         $first_row = false;

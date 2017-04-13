@@ -10,9 +10,12 @@ $twhere="";
 $tatta="";
 if($_SERVER["REQUEST_METHOD"]== "POST") {
 $tname=$_POST['name'];
+$tatt=$_POST['aname'];
 $twhere=$_POST['where'];
-if($twhere==NULL or $tname==NULL){
-	exit("Where clause or table name is empty");
+if($tname==NULL)
+	exit("table name is empty");
+if($tatt==NULL){
+	$tatta="*";
 }
 else
 	$tatta=$tatt;
@@ -23,15 +26,19 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 }	
-$sql = "DELETE FROM ".$tname." WHERE ".$twhere."";
-$result = $conn->query($sql);
+if($twhere == NULL){
+	$sql = "SELECT ".$tatta." FROM ".$tname."";
+	$result = $conn->query($sql);
+}
+else{
+	$sql = "SELECT ".$tatta." FROM ".$tname." WHERE ".$twhere."";
+	$result = $conn->query($sql);
+}
 if (!$result) {
     trigger_error('Invalid query: ' . $conn->error);
 }else{
    echo("<table>");
 $first_row = true;
-$sql = "SELECT * FROM ".$tname."";
-$result = $conn->query($sql);
 while ($row = $result->fetch_assoc()) {
     if ($first_row) {
         $first_row = false;
